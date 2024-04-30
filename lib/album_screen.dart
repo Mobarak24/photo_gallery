@@ -46,6 +46,8 @@ class AlbumScreen extends StatelessWidget {
           } else {
             return LandscapeTree(
               img: items['img'],
+              header: items['header'],
+              description: items['description'],
             );
           }
         },
@@ -203,11 +205,11 @@ class PortraitTree extends StatelessWidget {
 }
 
 class LandscapeTree extends StatelessWidget {
-  final String img;
+  final String img,header,description;
 
   const LandscapeTree({
     super.key,
-    required this.img,
+    required this.img, required this.header, required this.description,
   });
 
   @override
@@ -241,11 +243,11 @@ class LandscapeTree extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(left: 30, top: 10),
+                 Padding(
+                  padding: const EdgeInsets.only(left: 30, top: 10),
                   child: Text(
-                    'Mood With Nature',
-                    style: TextStyle(
+                    header,
+                    style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w400,
                     ),
@@ -254,12 +256,11 @@ class LandscapeTree extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(left: 30),
+                 Padding(
+                  padding: const EdgeInsets.only(left: 30),
                   child: Text(
-                    'Mood With Nature,This is a beautiful place,i like this place '
-                        'its really wonderful place.This is a beautiful place,i like this place',
-                    style: TextStyle(
+                    description,
+                    style: const TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w400,
                     ),
