@@ -10,7 +10,7 @@ class AlbumScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          items['text'],
+          items['title'],
         ),
         leading: Container(
           margin: const EdgeInsets.all(10),
@@ -38,9 +38,15 @@ class AlbumScreen extends StatelessWidget {
       body: OrientationBuilder(
         builder: (context, orientation) {
           if (orientation == Orientation.portrait) {
-            return const PortraitTree();
+            return PortraitTree(
+              img: items['img'],
+              header: items['header'],
+              description: items['description'],
+            );
           } else {
-            return const LandscapeTree();
+            return LandscapeTree(
+              img: items['img'],
+            );
           }
         },
       ),
@@ -49,8 +55,10 @@ class AlbumScreen extends StatelessWidget {
 }
 
 class PortraitTree extends StatelessWidget {
+  final String img,header,description;
   const PortraitTree({
     super.key,
+    required this.img, required this.header, required this.description,
   });
 
   @override
@@ -72,9 +80,10 @@ class PortraitTree extends StatelessWidget {
                   color: Colors.black45,
                 ),
               ],
-              image: const DecorationImage(
+              image: DecorationImage(
                 image: NetworkImage(
-                    'https://m.media-amazon.com/images/I/71D6gzDvfVL._AC_UF1000,1000_QL80_.jpg'),
+                  img,
+                ),
                 fit: BoxFit.cover,
               ),
             ),
@@ -82,11 +91,11 @@ class PortraitTree extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 30),
+          Padding(
+            padding: const EdgeInsets.only(left: 30),
             child: Text(
-              'Mood With Nature',
-              style: TextStyle(
+              header,
+              style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.w400,
               ),
@@ -95,12 +104,11 @@ class PortraitTree extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 30),
+          Padding(
+            padding: const EdgeInsets.only(left: 30),
             child: Text(
-              'Mood With Nature,This is a beautiful place,i like this place '
-                  'its really wonderful place.This is a beautiful place,i like this place',
-              style: TextStyle(
+              description,
+              style: const TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.w400,
               ),
@@ -195,8 +203,11 @@ class PortraitTree extends StatelessWidget {
 }
 
 class LandscapeTree extends StatelessWidget {
+  final String img;
+
   const LandscapeTree({
     super.key,
+    required this.img,
   });
 
   @override
@@ -219,9 +230,8 @@ class LandscapeTree extends StatelessWidget {
                     color: Colors.black45,
                   ),
                 ],
-                image: const DecorationImage(
-                  image: NetworkImage(
-                      'https://m.media-amazon.com/images/I/71D6gzDvfVL._AC_UF1000,1000_QL80_.jpg'),
+                image: DecorationImage(
+                  image: NetworkImage(img),
                   fit: BoxFit.cover,
                 ),
               ),
