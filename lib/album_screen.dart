@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:photogallery/widgets/image_container.dart';
 
 class AlbumScreen extends StatelessWidget {
-  var items;
+  final dynamic items;
 
-  AlbumScreen({super.key, required this.items});
+  const AlbumScreen({super.key, required this.items});
 
   @override
   Widget build(BuildContext context) {
@@ -57,10 +58,13 @@ class AlbumScreen extends StatelessWidget {
 }
 
 class PortraitTree extends StatelessWidget {
-  final String img,header,description;
+  final String img, header, description;
+
   const PortraitTree({
     super.key,
-    required this.img, required this.header, required this.description,
+    required this.img,
+    required this.header,
+    required this.description,
   });
 
   @override
@@ -150,51 +154,25 @@ class PortraitTree extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            padding: const EdgeInsets.all(20),
+          const SizedBox(
+            height: 20,
+          ),
+          const SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  height: 160,
-                  width: 150,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    boxShadow: const [
-                      BoxShadow(
-                        offset: Offset(0, 15),
-                        blurRadius: 30,
-                        color: Colors.black45,
-                      ),
-                    ],
-                    image: const DecorationImage(
-                      image: NetworkImage(
+                ImageContainer(
+                    img:
                         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpkbr9WksXUPLZif2kGXyk8cRZYyh-STZw4Q&s',
-                      ),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+                    text: 'Sky'),
+                SizedBox(
+                  width: 20,
                 ),
-                Container(
-                  height: 160,
-                  width: 150,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    boxShadow: const [
-                      BoxShadow(
-                        offset: Offset(0, 15),
-                        blurRadius: 30,
-                        color: Colors.black45,
-                      ),
-                    ],
-                    image: const DecorationImage(
-                      image: NetworkImage(
+                ImageContainer(
+                    img:
                         'https://static.vecteezy.com/system/resources/thumbnails/023/464/603/small_2x/empty-asphalt-road-towards-modern-city-ai-generated-photo.jpg',
-                      ),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
+                    text: 'Road'),
               ],
             ),
           ),
@@ -205,11 +183,13 @@ class PortraitTree extends StatelessWidget {
 }
 
 class LandscapeTree extends StatelessWidget {
-  final String img,header,description;
+  final String img, header, description;
 
   const LandscapeTree({
     super.key,
-    required this.img, required this.header, required this.description,
+    required this.img,
+    required this.header,
+    required this.description,
   });
 
   @override
@@ -243,7 +223,7 @@ class LandscapeTree extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                 Padding(
+                Padding(
                   padding: const EdgeInsets.only(left: 30, top: 10),
                   child: Text(
                     header,
@@ -256,7 +236,7 @@ class LandscapeTree extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                 Padding(
+                Padding(
                   padding: const EdgeInsets.only(left: 30),
                   child: Text(
                     description,
@@ -300,53 +280,22 @@ class LandscapeTree extends StatelessWidget {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(20),
+                const SingleChildScrollView(
+                  padding: EdgeInsets.all(20),
+                  scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      Container(
-                        height: 160,
-                        width: 150,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          boxShadow: const [
-                            BoxShadow(
-                              offset: Offset(0, 15),
-                              blurRadius: 30,
-                              color: Colors.black45,
-                            ),
-                          ],
-                          image: const DecorationImage(
-                            image: NetworkImage(
+                      ImageContainer(
+                          img:
                               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpkbr9WksXUPLZif2kGXyk8cRZYyh-STZw4Q&s',
-                            ),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
+                          text: 'Sky'),
+                      SizedBox(
                         width: 20,
                       ),
-                      Container(
-                        height: 160,
-                        width: 150,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          boxShadow: const [
-                            BoxShadow(
-                              offset: Offset(0, 15),
-                              blurRadius: 30,
-                              color: Colors.black45,
-                            ),
-                          ],
-                          image: const DecorationImage(
-                            image: NetworkImage(
+                      ImageContainer(
+                          img:
                               'https://static.vecteezy.com/system/resources/thumbnails/023/464/603/small_2x/empty-asphalt-road-towards-modern-city-ai-generated-photo.jpg',
-                            ),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
+                          text: 'Road'),
                     ],
                   ),
                 ),

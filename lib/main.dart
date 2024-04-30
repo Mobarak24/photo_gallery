@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Color.fromRGBO(44, 171, 0, 1),
           centerTitle: true,
           foregroundColor: Colors.white,
+
         ),
       ),
     );

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:photogallery/album_screen.dart';
+import 'package:photogallery/widgets/image_container.dart';
 
 class Item {
-  var item = [
+  final List<Map<String, String>> item = [
     {
       'img':
       'https://m.media-amazon.com/images/I/71D6gzDvfVL._AC_UF1000,1000_QL80_.jpg',
@@ -85,7 +86,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text(
-            'Photo Gallary',
+            'Photo Gallery',
           ),
           leading: Container(
             margin: const EdgeInsets.all(10),
@@ -107,7 +108,7 @@ class HomeScreen extends StatelessWidget {
               Icons.more_vert,
               color: Colors.white,
               size: 24,
-            )
+            ),
           ],
         ),
         body: OrientationBuilder(
@@ -119,7 +120,8 @@ class HomeScreen extends StatelessWidget {
 }
 
 Widget gridViewBuilder(Orientation orientation) {
-  var item = Item().item;
+
+   List<Map<String, String>> item = Item().item;
 
   return GridView.builder(
     padding: const EdgeInsets.all(20),
@@ -135,40 +137,9 @@ Widget gridViewBuilder(Orientation orientation) {
           Navigator.push(context, MaterialPageRoute(
             builder: (context) => AlbumScreen(items: item[index] ),),);
         },
-        child: Container(
-          height: 180,
-          width: 180,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
-            boxShadow: const [
-              BoxShadow(
-                offset: Offset(0, 15),
-                blurRadius: 30,
-                color: Colors.black45,
-              ),
-            ],
-            image: DecorationImage(
-              image: NetworkImage(
-                item[index]['img']!,
-              ),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: FittedBox(
-              alignment: Alignment.bottomLeft,
-              fit: BoxFit.scaleDown,
-              child: Text(
-                item[index]['title']!,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w800,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
+        child: ImageContainer(
+          img: item[index]['img']!,
+          text: item[index]['title']!,
         ),
       );
     },
